@@ -112,6 +112,12 @@
 		ctx.clearRect(0, 0, width, height);
 		ctx.putImageData(imageData, 0, 0);
 	}
+
+	const handleDownload = e => {
+		
+		e.currentTarget.href = canvas.toDataURL('image/jpeg');
+		e.currentTarget.download = 'canvas.jpeg';
+	}
 </script>
 
 <style type="text/scss">
@@ -179,6 +185,24 @@
 	img {
 		position: absolute;
 		visibility: hidden;
+	}
+
+	.button-download {
+		font-size: 11px;
+		text-decoration: none;
+		color: #FFF;
+		background-color: #2C3E50;
+		border: none;//#2C3E50 solid 1px;
+		border-radius: 5px;
+		padding: 2px 6px;
+		margin-left: 10px;
+
+		cursor: pointer;
+
+		&:hover {
+			background-color: #000;
+			//border: #2C3E50 solid 1px;
+		}
 	}
 
 	@media screen and (max-width: 700px) {
@@ -304,6 +328,7 @@
 			</li>	
 		</ul>
 		<button on:click={resetFilters}>Reset</button>
+		<a href="" class="button-download" on:click={handleDownload}>Download</a>
 	</div>
 </div>
 
